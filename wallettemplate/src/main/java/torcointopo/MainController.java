@@ -1,7 +1,15 @@
-package wallettemplate;
+package torcointopo;
 
+import javafx.beans.binding.Bindings;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.cell.TextFieldListCell;
+import javafx.util.Callback;
+import javafx.util.StringConverter;
+import org.bitcoinj.core.Address;
 import org.bitcoinj.core.Coin;
 import org.bitcoinj.core.DownloadListener;
+import org.bitcoinj.core.Transaction;
 import org.bitcoinj.utils.MonetaryFormat;
 import com.subgraph.orchid.TorClient;
 import com.subgraph.orchid.TorInitializationListener;
@@ -16,13 +24,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import org.fxmisc.easybind.EasyBind;
-import wallettemplate.controls.ClickableBitcoinAddress;
-import wallettemplate.controls.NotificationBarPane;
-import wallettemplate.utils.BitcoinUIModel;
-import wallettemplate.utils.easing.EasingMode;
-import wallettemplate.utils.easing.ElasticInterpolator;
+import torcointopo.controls.ClickableBitcoinAddress;
+import torcointopo.controls.NotificationBarPane;
+import torcointopo.utils.BitcoinUIModel;
+import torcointopo.utils.easing.EasingMode;
+import torcointopo.utils.easing.ElasticInterpolator;
 
-import static wallettemplate.Main.bitcoin;
+import static torcointopo.Main.bitcoin;
 
 /**
  * Gets created auto-magically by FXMLLoader via reflection. The widget fields are set to the GUI controls they're named
@@ -33,6 +41,7 @@ public class MainController {
     public Label balance;
     public Button sendMoneyOutBtn;
     public ClickableBitcoinAddress addressControl;
+    public ListView<Transaction> transactionList;
 
     private BitcoinUIModel model = new BitcoinUIModel();
     private NotificationBarPane.Item syncItem;
@@ -85,6 +94,26 @@ public class MainController {
                 showBitcoinSyncMessage();
             }
         });
+        Bindings.bindContent(transactionList.getItems(), model.getTransactions());
+
+        transactionList.setCellFactory(param -> new TextFieldListCell<>(new StringConverter<Transaction>() {
+            @Override
+            public String toString(Transaction tx) {
+                Coin value = tx.getValue(Main.bitcoin.wallet());
+                if (value.isPositive()) {
+                    return "Incoming payment of " + MonetaryFormat.BTC.format(value);
+                } else if (value.isNegative()) {
+                    Address address = tx.getOutput(0).getAddressFromP2PKHScript(Main.params);
+                    return "Outbound payment to " + address;
+                }
+                return "Payment with id " + tx.getHash();
+            }
+
+            @Override
+            public Transaction fromString(String string) {
+                return null;
+            }
+        }));
     }
 
     private void showBitcoinSyncMessage() {

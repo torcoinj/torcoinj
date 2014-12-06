@@ -1,4 +1,4 @@
-package wallettemplate.controls;
+package torcointopo.controls;
 
 
 import javafx.animation.Interpolator;
@@ -17,9 +17,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.util.Duration;
-import wallettemplate.utils.GuiUtils;
-import wallettemplate.utils.easing.EasingMode;
-import wallettemplate.utils.easing.ElasticInterpolator;
+import torcointopo.utils.GuiUtils;
+import torcointopo.utils.easing.EasingMode;
+import torcointopo.utils.easing.ElasticInterpolator;
 
 import javax.annotation.Nullable;
 

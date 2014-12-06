@@ -1,8 +1,7 @@
-package wallettemplate;
+package torcointopo;
 
 import org.bitcoinj.core.NetworkParameters;
 import org.bitcoinj.kits.WalletAppKit;
-import org.bitcoinj.params.MainNetParams;
 import org.bitcoinj.params.RegTestParams;
 import org.bitcoinj.params.TestNet3Params;
 import org.bitcoinj.utils.BriefLogFormatter;
@@ -16,19 +15,19 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import wallettemplate.controls.NotificationBarPane;
-import wallettemplate.utils.GuiUtils;
-import wallettemplate.utils.TextFieldValidator;
+import torcointopo.controls.NotificationBarPane;
+import torcointopo.utils.GuiUtils;
+import torcointopo.utils.TextFieldValidator;
 
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-import static wallettemplate.utils.GuiUtils.*;
+import static torcointopo.utils.GuiUtils.*;
 
 public class Main extends Application {
-    public static String APP_NAME = "WalletTemplate";
+    public static String APP_NAME = "TorcoinTopology";
 
     public static NetworkParameters params = TestNet3Params.get();
     public static WalletAppKit bitcoin;
@@ -70,7 +69,7 @@ public class Main extends Application {
         // ordering of the construction and connection matters here, otherwise we get (harmless) CSS error
         // spew to the logs.
         notificationBar = new NotificationBarPane(mainUI);
-        mainWindow.setTitle(APP_NAME);
+        mainWindow.setTitle("Torcoin Network Topology");
         uiStack = new StackPane();
         Scene scene = new Scene(uiStack);
         TextFieldValidator.configureScene(scene);   // Add CSS that we need.
@@ -119,7 +118,7 @@ public class Main extends Application {
             bitcoin.connectToLocalHost();   // You should run a regtest mode bitcoind locally.
         } else if (params == TestNet3Params.get()) {
             // As an example!
-            bitcoin.useTor();
+            // bitcoin.useTor();
         }
         bitcoin.setDownloadListener(controller.progressBarUpdater())
                .setBlockingStartup(false)

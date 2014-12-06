@@ -1,4 +1,4 @@
-package wallettemplate;
+package torcointopo;
 
 import javafx.scene.layout.HBox;
 import org.bitcoinj.core.*;
@@ -9,12 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.spongycastle.crypto.params.KeyParameter;
-import wallettemplate.controls.BitcoinAddressValidator;
-import wallettemplate.utils.TextFieldValidator;
-import wallettemplate.utils.WTUtils;
+import torcointopo.controls.BitcoinAddressValidator;
+import torcointopo.utils.TextFieldValidator;
+import torcointopo.utils.WTUtils;
 
 import static com.google.common.base.Preconditions.checkState;
-import static wallettemplate.utils.GuiUtils.*;
+import static torcointopo.utils.GuiUtils.*;
 
 public class SendMoneyController {
     public Button sendBtn;

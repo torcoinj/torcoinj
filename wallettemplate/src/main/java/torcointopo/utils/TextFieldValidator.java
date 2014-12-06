@@ -1,4 +1,4 @@
-package wallettemplate.utils;
+package torcointopo.utils;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;

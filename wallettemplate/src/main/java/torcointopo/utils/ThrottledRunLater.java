@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package wallettemplate.utils;
+package torcointopo.utils;
 
 import javafx.application.Platform;
 

@@ -1,4 +1,4 @@
-package wallettemplate;
+package torcointopo;
 
 import org.bitcoinj.crypto.KeyCrypterScrypt;
 import javafx.event.ActionEvent;
@@ -11,11 +11,11 @@ import javafx.scene.layout.GridPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongycastle.crypto.params.KeyParameter;
-import wallettemplate.utils.KeyDerivationTasks;
+import torcointopo.utils.KeyDerivationTasks;
 
 import java.time.Duration;
 
-import static wallettemplate.utils.GuiUtils.*;
+import static torcointopo.utils.GuiUtils.*;
 
 public class WalletSetPasswordController {
     private static final Logger log = LoggerFactory.getLogger(WalletSetPasswordController.class);

@@ -1,4 +1,4 @@
-package wallettemplate.utils;
+package torcointopo.utils;
 
 import org.bitcoinj.crypto.KeyCrypterScrypt;
 import com.google.common.util.concurrent.Uninterruptibles;
@@ -11,7 +11,7 @@ import org.spongycastle.crypto.params.KeyParameter;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-import static wallettemplate.utils.GuiUtils.checkGuiThread;
+import static torcointopo.utils.GuiUtils.checkGuiThread;
 
 /**
  * Background tasks for pumping a progress meter and deriving an AES key using scrypt.
