@@ -23,13 +23,14 @@ import org.bitcoinj.core.Utils;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
- * Parameters for the testnet, a separate public instance of Bitcoin that has relaxed rules suitable for development
- * and testing of applications and new Bitcoin versions.
+ * Parameters for the TorNet, an altcoin network designed for usage with the Tor network.
  */
 public class TorNetParams extends NetworkParameters {
     public TorNetParams() {
         super();
         id = ID_TESTNET;
+        /* "Cable News Network 07/12/14 Bush has special name for Hillary Clinton" */
+        // Hex: 4361626c65204e657773204e6574776f726b2030372f31322f3134204275736820686173207370656369616c206e616d6520666f722048696c6c61727920436c696e746f6e
         // Genesis hash is 000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943
         packetMagic = 0x0b110907;
         interval = INTERVAL;
@@ -50,9 +51,7 @@ public class TorNetParams extends NetworkParameters {
         alertSigningKey = Utils.HEX.decode("04302390343f91cc401d56d68b123028bf52e5fca1939df127f63c6467cdf9c8e2c14b61104cf817d0b780da337893ecc4aaff1309e536162dabbdb45200ca2b0a");
 
         dnsSeeds = new String[] {
-                "testnet-seed.alexykot.me",           // Alex Kotenko
-                "testnet-seed.bitcoin.schildbach.de", // Andreas Schildbach
-                "testnet-seed.bitcoin.petertodd.org"  // Peter Todd
+                "73.167.60.64",           // Derek
         };
         bip32HeaderPub = 0x043587CF;
         bip32HeaderPriv = 0x04358394;
