@@ -4,6 +4,7 @@ import org.bitcoinj.core.NetworkParameters;
 import org.bitcoinj.kits.WalletAppKit;
 import org.bitcoinj.params.RegTestParams;
 import org.bitcoinj.params.TestNet3Params;
+import org.bitcoinj.params.TorNetParams;
 import org.bitcoinj.utils.BriefLogFormatter;
 import org.bitcoinj.utils.Threading;
 import org.bitcoinj.wallet.DeterministicSeed;
@@ -29,7 +30,7 @@ import static torcointopo.utils.GuiUtils.*;
 public class Main extends Application {
     public static String APP_NAME = "TorcoinTopology";
 
-    public static NetworkParameters params = TestNet3Params.get();
+    public static NetworkParameters params = TorNetParams.get();
     public static WalletAppKit bitcoin;
     public static Main instance;
 

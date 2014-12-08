@@ -59,7 +59,7 @@
               <tabs>
                 <Tab text="Recent Activity">
                      <content>
-                        <ListView fx:id="transactionList" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="transactionList" opacity="0.7" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </Tab>
                 <Tab text="Tor Network" />
