@@ -1,5 +1,9 @@
 /*
  * Copyright 2013 Google Inc.
+<<<<<<< HEAD
+=======
+ * Copyright 2014 Andreas Schildbach
+>>>>>>> a26d7791be58c1c2205f899e177679359910228f
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,10 +27,10 @@ import org.bitcoinj.core.Utils;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
- * Parameters for the main production network on which people trade goods and services.
+ * Parameters for the TorNet, an altcoin network designed for usage with the Tor network.
  */
 public class TorNetParams extends NetworkParameters {
-    public TorNetParams() {
+    public TorNetParams()  {
         super();
         interval = INTERVAL;
         targetTimespan = TARGET_TIMESPAN;
