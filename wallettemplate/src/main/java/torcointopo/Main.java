@@ -32,7 +32,7 @@ public class Main extends Application {
     public static String APP_NAME = "TorcoinTopology";
 
     //public static NetworkParameters params = TorNetParams.get();
-    public static NetworkParameters params = MainNetParams.get();
+    public static NetworkParameters params = TorNetParams.get();
     public static WalletAppKit bitcoin;
     public static Main instance;
 

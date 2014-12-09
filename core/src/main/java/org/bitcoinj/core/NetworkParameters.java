@@ -103,19 +103,19 @@ public abstract class NetworkParameters implements Serializable {
     }
 
     // TorCoin Genesis info
-    private static Block createGenesis(NetworkParameters n) {
+    public void setTorBlock(NetworkParameters n) {
         Block genesisBlock = new Block(n);
         Transaction t = new Transaction(n);
         try {
-            // bytes: 04ffff001d01044c5d4e657720596f726b2054696d65732032382f4e6f762f3230313420452e552e205061726c69616d656e7420506173736573204d65617375726520746f20427265616b20557020476f6f676c6520696e2053796d626f6c696320566f7465
+            // 04ffff001d01044c5d4e657720596f726b2054696d65732032382f4e6f762f3230313420452e552e205061726c69616d656e7420506173736573204d65617375726520746f20427265616b20557020476f6f676c6520696e2053796d626f6c696320566f7465
             // algorithm: SHA256
             // merkle hash: 7d384db54a917d6e8ff696fe415656d22623771cb1aad0c7a61e4b56eb48ccfd
             // pszTimestamp: New York Times 28/Nov/2014 E.U. Parliament Passes Measure to Break Up Google in Symbolic Vote
             // pubkey: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
-            // time: 1418142972
-            // bits: 0x1d00ffff
-            // nonce: ??
-            // hash: ??
+            // time: 1418154266
+            // bits: 0x1e0ffff0
+            // nonce: 946985
+            // genesis hash: 000005907642e23edfb0db1caf109296822b4f0cda74b609490ae71b6ad74c0a
             byte[] bytes = Utils.HEX.decode
                     ("04ffff001d01044c5d4e657720596f726b2054696d65732032382f4e6f762f3230313420452e552e205061726c69616d656e7420506173736573204d65617375726520746f20427265616b20557020476f6f676c6520696e2053796d626f6c696320566f7465");
             t.addInput(new TransactionInput(n, t, bytes));
@@ -129,10 +129,10 @@ public abstract class NetworkParameters implements Serializable {
             throw new RuntimeException(e);
         }
         genesisBlock.addTransaction(t);
-        return genesisBlock;
+        this.genesisBlock = genesisBlock;
     }
 
-    private static Block createBTCGenesis(NetworkParameters n) {
+    private static Block createGenesis(NetworkParameters n) {
         Block genesisBlock = new Block(n);
         Transaction t = new Transaction(n);
         try {
@@ -140,14 +140,13 @@ public abstract class NetworkParameters implements Serializable {
             //
             //   "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"
             byte[] bytes = Utils.HEX.decode
-                   // ("04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73");
-                    ("04ffff001d010407546f72436f696e");
+                    ("04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73");
             t.addInput(new TransactionInput(n, t, bytes));
             ByteArrayOutputStream scriptPubKeyBytes = new ByteArrayOutputStream();
             Script.writeBytes(scriptPubKeyBytes, Utils.HEX.decode
                     ("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"));
             scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
-            t.addOutput(new TransactionOutput(n, t, ZERO, scriptPubKeyBytes.toByteArray()));
+            t.addOutput(new TransactionOutput(n, t, FIFTY_COINS, scriptPubKeyBytes.toByteArray()));
         } catch (Exception e) {
             // Cannot happen.
             throw new RuntimeException(e);

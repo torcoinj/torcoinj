@@ -35,9 +35,10 @@ public class TorNetParams extends NetworkParameters {
 
     public TorNetParams()  {
         super();
+        super.setTorBlock(this);
         interval = INTERVAL;
         targetTimespan = TARGET_TIMESPAN;
-        maxTarget = Utils.decodeCompactBits(0x1e0fffffL);
+        maxTarget = Utils.decodeCompactBits(0x1e0ffff0);
         dumpedPrivateKeyHeader = 128;
         addressHeader = 80;
         p2shHeader = 5;
@@ -57,22 +58,22 @@ public class TorNetParams extends NetworkParameters {
         // merkle hash: 7d384db54a917d6e8ff696fe415656d22623771cb1aad0c7a61e4b56eb48ccfd
         // pszTimestamp: New York Times 28/Nov/2014 E.U. Parliament Passes Measure to Break Up Google in Symbolic Vote
         // pubkey: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
-        // time: 1418142972
-        // bits: 0x1d00ffff
-        // nonce: ??
-        // hash: ??
+        // time: 1418154266
+        // bits: 0x1e0ffff0
+        // nonce: 946985
+        // genesis hash: 000005907642e23edfb0db1caf109296822b4f0cda74b609490ae71b6ad74c0a
 
-        genesisBlock.setDifficultyTarget(0x1d00ffff);
-        genesisBlock.setTime(1418142972);
-        genesisBlock.setNonce(808716);
-        id = ID_MAINNET;
+        genesisBlock.setDifficultyTarget(0x1e0ffff0);
+        genesisBlock.setTime(1418154266);
+        genesisBlock.setNonce(946985);
+        id = ID_TORMAINNET;
         subsidyDecreaseBlockCount = 210000;
         spendableCoinbaseDepth = 100;
         String genesisHash = genesisBlock.getHashAsString();
-        System.out.println(genesisBlock.toString());
+//        System.out.println(genesisBlock.toString());
         System.out.println(genesisHash);
-        checkState(genesisHash.equals("0x00000b4c01503b3b9ff5b495f64a98c24904f5adeec4e9968a7df7e83a32e054"),
-                genesisHash);
+        System.out.println("000005907642e23edfb0db1caf109296822b4f0cda74b609490ae71b6ad74c0a");
+        checkState(genesisHash.equals("000005907642e23edfb0db1caf109296822b4f0cda74b609490ae71b6ad74c0a"), genesisHash);
 
         // This contains (at a minimum) the blocks which are not BIP30 compliant. BIP30 changed how duplicate
         // transactions are handled. Duplicated transactions could occur in the case where a coinbase had the same
