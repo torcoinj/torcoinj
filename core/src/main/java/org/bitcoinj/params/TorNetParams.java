@@ -21,7 +21,6 @@
 package org.bitcoinj.params;
 
 import org.bitcoinj.core.NetworkParameters;
-import org.bitcoinj.core.Sha256Hash;
 import org.bitcoinj.core.Utils;
 
 import static com.google.common.base.Preconditions.checkState;
@@ -30,6 +29,11 @@ import static com.google.common.base.Preconditions.checkState;
  * Parameters for the TorNet, an altcoin network designed for usage with the Tor network.
  */
 public class TorNetParams extends NetworkParameters {
+
+    // TODO - generate our own EDCSA keypair and replace this
+    // https://www.cryptomonkeys.com/2014/02/openssh-ecdsa-and-os-x-mavericks/
+    public static final byte[] TORCOIN_KEY = Utils.HEX.decode("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
+
     public TorNetParams()  {
         super();
         interval = INTERVAL;
@@ -44,8 +48,23 @@ public class TorNetParams extends NetworkParameters {
         bip32HeaderPub = 0x0488B21E; //The 4 byte header that serializes in base58 to "xpub".
         bip32HeaderPriv = 0x0488ADE4; //The 4 byte header that serializes in base58 to "xprv"
 
-        genesisBlock.setDifficultyTarget(0x1d00ffffL);
-        genesisBlock.setTime(1417976555);
+        // TorCoin specifics
+        alertSigningKey = TORCOIN_KEY;
+
+        // Genesis block information
+        // calculated from https://github.com/lhartikk/GenesisH0
+        // bytes: 04ffff001d01044c5d4e657720596f726b2054696d65732032382f4e6f762f3230313420452e552e205061726c69616d656e7420506173736573204d65617375726520746f20427265616b20557020476f6f676c6520696e2053796d626f6c696320566f7465
+        // algorithm: SHA256
+        // merkle hash: 7d384db54a917d6e8ff696fe415656d22623771cb1aad0c7a61e4b56eb48ccfd
+        // pszTimestamp: New York Times 28/Nov/2014 E.U. Parliament Passes Measure to Break Up Google in Symbolic Vote
+        // pubkey: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
+        // time: 1418142972
+        // bits: 0x1d00ffff
+        // nonce: ??
+        // hash: ??
+
+        genesisBlock.setDifficultyTarget(0x1d00ffff);
+        genesisBlock.setTime(1418142972);
         genesisBlock.setNonce(808716);
         id = ID_MAINNET;
         subsidyDecreaseBlockCount = 210000;
@@ -58,14 +77,10 @@ public class TorNetParams extends NetworkParameters {
         // transactions are handled. Duplicated transactions could occur in the case where a coinbase had the same
         // extraNonce and the same outputs but appeared at different heights, and greatly complicated re-org handling.
         // Having these here simplifies block connection logic considerably.
-        checkpoints.put(91722, new Sha256Hash("00000000000271a2dc26e7667f8419f2e15416dc6955e5a6c6cdf3f2574dd08e"));
-        checkpoints.put(91812, new Sha256Hash("00000000000af0aed4792b1acee3d966af36cf5def14935db8de83d6f9306f2f"));
-        checkpoints.put(91842, new Sha256Hash("00000000000a4d0a398161ffc163c503763b1f4360639393e0e4c8e300e0caec"));
-        checkpoints.put(91880, new Sha256Hash("00000000000743f190a18c5577a3c2d2a1f610ae9601ac046a38084ccb7cd721"));
-        checkpoints.put(200000, new Sha256Hash("000000000000034a7dedef4a161fa058a2d67a173a90155f3a2fe6fc132e0ebf"));
+        // checkpoints.put(91722, new Sha256Hash("00000000000271a2dc26e7667f8419f2e15416dc6955e5a6c6cdf3f2574dd08e"));
 
         dnsSeeds = new String[] {
-                "benjaminchrobot.com"          // Benjamin Chrobot
+                "torcoin.benjaminchrobot.com"          // Benjamin Chrobot
         };
     }
 

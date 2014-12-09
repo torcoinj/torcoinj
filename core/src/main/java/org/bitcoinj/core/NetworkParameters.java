@@ -58,6 +58,9 @@ public abstract class NetworkParameters implements Serializable {
     /** Unit test network. */
     public static final String ID_UNITTESTNET = "org.bitcoinj.unittest";
 
+    /** The string returned by getId() for the main, production network where people trade things. */
+    public static final String ID_TORMAINNET = "org.torcoin.production";
+
     /** The string used by the payment protocol to represent the main net. */
     public static final String PAYMENT_PROTOCOL_ID_MAINNET = "main";
     /** The string used by the payment protocol to represent the test net. */
@@ -99,7 +102,37 @@ public abstract class NetworkParameters implements Serializable {
         genesisBlock = createGenesis(this);
     }
 
+    // TorCoin Genesis info
     private static Block createGenesis(NetworkParameters n) {
+        Block genesisBlock = new Block(n);
+        Transaction t = new Transaction(n);
+        try {
+            // bytes: 04ffff001d01044c5d4e657720596f726b2054696d65732032382f4e6f762f3230313420452e552e205061726c69616d656e7420506173736573204d65617375726520746f20427265616b20557020476f6f676c6520696e2053796d626f6c696320566f7465
+            // algorithm: SHA256
+            // merkle hash: 7d384db54a917d6e8ff696fe415656d22623771cb1aad0c7a61e4b56eb48ccfd
+            // pszTimestamp: New York Times 28/Nov/2014 E.U. Parliament Passes Measure to Break Up Google in Symbolic Vote
+            // pubkey: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
+            // time: 1418142972
+            // bits: 0x1d00ffff
+            // nonce: ??
+            // hash: ??
+            byte[] bytes = Utils.HEX.decode
+                    ("04ffff001d01044c5d4e657720596f726b2054696d65732032382f4e6f762f3230313420452e552e205061726c69616d656e7420506173736573204d65617375726520746f20427265616b20557020476f6f676c6520696e2053796d626f6c696320566f7465");
+            t.addInput(new TransactionInput(n, t, bytes));
+            ByteArrayOutputStream scriptPubKeyBytes = new ByteArrayOutputStream();
+            Script.writeBytes(scriptPubKeyBytes, Utils.HEX.decode
+                    ("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"));
+            scriptPubKeyBytes.write(ScriptOpCodes.OP_CHECKSIG);
+            t.addOutput(new TransactionOutput(n, t, FIFTY_COINS, scriptPubKeyBytes.toByteArray()));
+        } catch (Exception e) {
+            // Cannot happen.
+            throw new RuntimeException(e);
+        }
+        genesisBlock.addTransaction(t);
+        return genesisBlock;
+    }
+
+    private static Block createBTCGenesis(NetworkParameters n) {
         Block genesisBlock = new Block(n);
         Transaction t = new Transaction(n);
         try {
@@ -212,6 +245,8 @@ public abstract class NetworkParameters implements Serializable {
             return UnitTestParams.get();
         } else if (id.equals(ID_REGTEST)) {
             return RegTestParams.get();
+        } else if (id.equals(ID_TORMAINNET)) {
+            return TorNetParams.get();
         } else {
             return null;
         }
