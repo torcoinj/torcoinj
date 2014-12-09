@@ -30,9 +30,8 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public class TorNetParams extends NetworkParameters {
 
-    // TODO - generate our own EDCSA keypair and replace this
-    // https://www.cryptomonkeys.com/2014/02/openssh-ecdsa-and-os-x-mavericks/
-    public static final byte[] TORCOIN_KEY = Utils.HEX.decode("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
+    // Our own EDCSA public key
+    public static final byte[] TORCOIN_KEY = Utils.HEX.decode("04061fc65ec341842224ef2057fe82967bd2869099065c4aa5cff59de2f579fb1b0d8456031f72a69047695c482c392b7a5a25ff3f1141f02e0a666936644ac95c");
 
     public TorNetParams()  {
         super();
