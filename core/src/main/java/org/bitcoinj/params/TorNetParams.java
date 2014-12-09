@@ -38,9 +38,9 @@ public class TorNetParams extends NetworkParameters {
         super();
         interval = INTERVAL;
         targetTimespan = TARGET_TIMESPAN;
-        maxTarget = Utils.decodeCompactBits(0x1d00ffffL);
+        maxTarget = Utils.decodeCompactBits(0x1e0fffffL);
         dumpedPrivateKeyHeader = 128;
-        addressHeader = 0;
+        addressHeader = 80;
         p2shHeader = 5;
         acceptableAddressCodes = new int[] { addressHeader, p2shHeader };
         port = 6530;
@@ -70,6 +70,8 @@ public class TorNetParams extends NetworkParameters {
         subsidyDecreaseBlockCount = 210000;
         spendableCoinbaseDepth = 100;
         String genesisHash = genesisBlock.getHashAsString();
+        System.out.println(genesisBlock.toString());
+        System.out.println(genesisHash);
         checkState(genesisHash.equals("0x00000b4c01503b3b9ff5b495f64a98c24904f5adeec4e9968a7df7e83a32e054"),
                 genesisHash);
 
