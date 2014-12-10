@@ -71,7 +71,6 @@ public class TorNetParams extends NetworkParameters {
         spendableCoinbaseDepth = 100;
         String genesisHash = genesisBlock.getHashAsString();
 //        System.out.println(genesisBlock.toString());
-        System.out.println(genesisHash);
         checkState(genesisHash.equals("000000004380b9d645ec3dc4cdd83919fac6f6a6094b6a099624a01023606214"), genesisHash);
 
         // This contains (at a minimum) the blocks which are not BIP30 compliant. BIP30 changed how duplicate
