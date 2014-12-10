@@ -63,17 +63,16 @@ public class TorNetParams extends NetworkParameters {
         // nonce: 946985
         // genesis hash: 000005907642e23edfb0db1caf109296822b4f0cda74b609490ae71b6ad74c0a
 
-        genesisBlock.setDifficultyTarget(0x1e0ffff0);
-        genesisBlock.setTime(1418154266);
-        genesisBlock.setNonce(946985);
+        genesisBlock.setDifficultyTarget(0x1d00ffff);
+        genesisBlock.setTime(1417976555);
+        genesisBlock.setNonce(2541164328L);
         id = ID_TORMAINNET;
         subsidyDecreaseBlockCount = 210000;
         spendableCoinbaseDepth = 100;
         String genesisHash = genesisBlock.getHashAsString();
 //        System.out.println(genesisBlock.toString());
         System.out.println(genesisHash);
-        System.out.println("000005907642e23edfb0db1caf109296822b4f0cda74b609490ae71b6ad74c0a");
-        checkState(genesisHash.equals("000005907642e23edfb0db1caf109296822b4f0cda74b609490ae71b6ad74c0a"), genesisHash);
+        checkState(genesisHash.equals("000000004380b9d645ec3dc4cdd83919fac6f6a6094b6a099624a01023606214"), genesisHash);
 
         // This contains (at a minimum) the blocks which are not BIP30 compliant. BIP30 changed how duplicate
         // transactions are handled. Duplicated transactions could occur in the case where a coinbase had the same

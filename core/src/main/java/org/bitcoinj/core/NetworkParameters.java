@@ -117,7 +117,7 @@ public abstract class NetworkParameters implements Serializable {
             // nonce: 946985
             // genesis hash: 000005907642e23edfb0db1caf109296822b4f0cda74b609490ae71b6ad74c0a
             byte[] bytes = Utils.HEX.decode
-                    ("04ffff001d01044c5d4e657720596f726b2054696d65732032382f4e6f762f3230313420452e552e205061726c69616d656e7420506173736573204d65617375726520746f20427265616b20557020476f6f676c6520696e2053796d626f6c696320566f7465");
+                    ("04ffff001d0104194d61792074686520666f726365206265207769746820796f75");
             t.addInput(new TransactionInput(n, t, bytes));
             ByteArrayOutputStream scriptPubKeyBytes = new ByteArrayOutputStream();
             Script.writeBytes(scriptPubKeyBytes, Utils.HEX.decode
