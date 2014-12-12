@@ -101,6 +101,7 @@ public class Transaction extends ChildMessage implements Serializable {
 
     // These are serialized in both bitcoin and java serialization.
     private long version;
+    private long tcType;
     private ArrayList<TransactionInput> inputs;
     private ArrayList<TransactionOutput> outputs;
 
@@ -172,6 +173,7 @@ public class Transaction extends ChildMessage implements Serializable {
     public Transaction(NetworkParameters params) {
         super(params);
         version = 1;
+//        tcType = 0;
         inputs = new ArrayList<TransactionInput>();
         outputs = new ArrayList<TransactionOutput>();
         // We don't initialize appearsIn deliberately as it's only useful for transactions stored in the wallet.
@@ -510,8 +512,9 @@ public class Transaction extends ChildMessage implements Serializable {
 
     protected static int calcLength(byte[] buf, int offset) {
         VarInt varint;
+
         // jump past version (uint32)
-        int cursor = offset + 4;
+        int cursor = offset + 8;
 
         int i;
         long scriptLen;
@@ -553,6 +556,7 @@ public class Transaction extends ChildMessage implements Serializable {
         cursor = offset;
 
         version = readUint32();
+//        tcType = readUint32();
         optimalEncodingMessageSize = 4;
 
         // First come the inputs.
@@ -642,6 +646,7 @@ public class Transaction extends ChildMessage implements Serializable {
             }
             s.append(String.format("  time locked until %s%n", time));
         }
+//        s.append(String.valueOf(tcType));
         if (inputs.size() == 0) {
             s.append(String.format("  INCOMPLETE: No inputs!%n"));
             return s.toString();
@@ -1035,6 +1040,7 @@ public class Transaction extends ChildMessage implements Serializable {
     @Override
     protected void bitcoinSerializeToStream(OutputStream stream) throws IOException {
         uint32ToByteStreamLE(version, stream);
+//        uint32ToByteStreamLE(tcType, stream);
         stream.write(new VarInt(inputs.size()).encode());
         for (TransactionInput in : inputs)
             in.bitcoinSerialize(stream);
@@ -1318,5 +1324,9 @@ public class Transaction extends ChildMessage implements Serializable {
      */
     public void setMemo(String memo) {
         this.memo = memo;
+    }
+
+    public void setTcType(long tcType) {
+        this.tcType = tcType;
     }
 }

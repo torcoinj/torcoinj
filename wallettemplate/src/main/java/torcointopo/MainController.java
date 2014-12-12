@@ -1,8 +1,8 @@
 package torcointopo;
 
 import javafx.beans.binding.Bindings;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
@@ -19,8 +19,6 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import org.fxmisc.easybind.EasyBind;
@@ -42,6 +40,12 @@ public class MainController {
     public Button sendMoneyOutBtn;
     public ClickableBitcoinAddress addressControl;
     public ListView<Transaction> transactionList;
+    public TableView<OnionRelay> relayTable;
+    public TableColumn hostnameColumn;
+    public TableColumn ipAddressColumn;
+    public TableColumn bandwidthColumn;
+    public TableColumn nodeTypeColumn;
+    public TableColumn trustColumn;
 
     private BitcoinUIModel model = new BitcoinUIModel();
     private NotificationBarPane.Item syncItem;
@@ -114,6 +118,16 @@ public class MainController {
                 return null;
             }
         }));
+
+        hostnameColumn.setCellValueFactory(new PropertyValueFactory<OnionRelay, String>("hostname"));
+        ipAddressColumn.setCellValueFactory(new PropertyValueFactory<OnionRelay, String>("ipAddress"));
+        bandwidthColumn.setCellValueFactory(new PropertyValueFactory<OnionRelay, String>("bandwidth"));
+        nodeTypeColumn.setCellValueFactory(new PropertyValueFactory<OnionRelay, String>("relayType"));
+        trustColumn.setCellValueFactory(new PropertyValueFactory<OnionRelay, String>("trustRating"));
+
+        Bindings.bindContent(relayTable.getItems(), model.getOnionRelays());
+
+
     }
 
     private void showBitcoinSyncMessage() {

@@ -31,8 +31,8 @@ import static torcointopo.utils.GuiUtils.*;
 public class Main extends Application {
     public static String APP_NAME = "TorcoinTopology";
 
-    //public static NetworkParameters params = TorNetParams.get();
-    public static NetworkParameters params = TorNetParams.get();
+    public static NetworkParameters params = TestNet3Params.get();
+//    public static NetworkParameters params = TorNetParams.get();
     public static WalletAppKit bitcoin;
     public static Main instance;
 
@@ -110,7 +110,7 @@ public class Main extends Application {
                 // their own money!
                 bitcoin.wallet().allowSpendingUnconfirmedTransactions();
                 if (params != RegTestParams.get())
-                    bitcoin.peerGroup().setMaxConnections(1);
+                    bitcoin.peerGroup().setMaxConnections(11);
                 bitcoin.peerGroup().setBloomFilterFalsePositiveRate(0.00001);
                 Platform.runLater(controller::onBitcoinSetup);
             }

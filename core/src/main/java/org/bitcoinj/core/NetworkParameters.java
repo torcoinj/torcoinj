@@ -103,21 +103,22 @@ public abstract class NetworkParameters implements Serializable {
     }
 
     // TorCoin Genesis info
+    /*
+    000001933ff14d9dfa0d6587d89d3b74af330fac588ddea9911537782c465be7
+    a6f34b58d47ea108e3d2fb502cb87361012765195f79dd5d43c06b845cf07feb
+    1e01ffff
+    CBlock(hash=000001933ff14d9dfa0d6587d89d3b74af330fac588ddea9911537782c465be7, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=a6f34b58d47ea108e3d2fb502cb873\
+    61012765195f79dd5d43c06b845cf07feb, nTime=1417976555, nBits=1e01ffff, nNonce=7892705, vtx=1)
+      CTransaction(hash=a6f34b58d4, ver=2, type=2, vin.size=1, vout.size=1, nLockTime=0)
+        CTxIn(COutPoint(0000000000, 4294967295), coinbase 04ffff001d0104194d61792074686520666f726365206265207769746820796f75)
+        CTxOut(nValue=50.00000000, scriptPubKey=04678afdb0fe5548271967f1a67130)
+      vMerkleTree: a6f34b58d47ea108e3d2fb502cb87361012765195f79dd5d43c06b845cf07feb
+     */
     public void setTorBlock(NetworkParameters n) {
         Block genesisBlock = new Block(n);
         Transaction t = new Transaction(n);
         try {
-            /**
-             0000010497296153a3a1802e5b8363d2a115a3442bad7d92a50942b1e4f41f92
-             9f16973b8f172c5338c9b12b94ace162bcef730ae098d4ac04cdfefb44f5e44e
-             1e03ffff
-             CBlock(hash=0000010497296153a3a1802e5b8363d2a115a3442bad7d92a50942b1e4f41f92, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=9f16973b8f172c5338c9b12b94ace1\
-             62bcef730ae098d4ac04cdfefb44f5e44e, nTime=1417976555, nBits=1e03ffff, nNonce=2508269, vtx=1)
-             CTransaction(hash=9f16973b8f, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-             CTxIn(COutPoint(0000000000, 4294967295), coinbase 04ffff001d0104194d61792074686520666f726365206265207769746820796f75)
-             CTxOut(nValue=50.00000000, scriptPubKey=04678afdb0fe5548271967f1a67130)
-             vMerkleTree: 9f16973b8f172c5338c9b12b94ace162bcef730ae098d4ac04cdfefb44f5e44e
-             **/
+            t.setTcType(2);
             byte[] bytes = Utils.HEX.decode
                     ("04ffff001d0104194d61792074686520666f726365206265207769746820796f75");
             t.addInput(new TransactionInput(n, t, bytes));

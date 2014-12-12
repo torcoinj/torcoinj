@@ -8,6 +8,7 @@ import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import torcointopo.OnionRelay;
 
 import java.util.*;
 
@@ -20,6 +21,9 @@ public class BitcoinUIModel {
     private SimpleDoubleProperty syncProgress = new SimpleDoubleProperty(-1);
     private ProgressBarUpdater syncProgressUpdater = new ProgressBarUpdater();
     private ObservableList<Transaction> transactions = FXCollections.observableArrayList();
+    private ObservableList<OnionRelay> onionRelays = FXCollections.observableArrayList(
+            new OnionRelay("torcoin.mit.edu", "18.0.0.1", "2Mb/s", "exit", "1")
+    );
 
     public BitcoinUIModel() {
     }
@@ -73,5 +77,9 @@ public class BitcoinUIModel {
 
     public ObservableList<Transaction> getTransactions() {
         return transactions;
+    }
+
+    public ObservableList<OnionRelay> getOnionRelays() {
+        return onionRelays;
     }
 }
