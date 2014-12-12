@@ -38,13 +38,14 @@ public class TorNetParams extends NetworkParameters {
         super.setTorBlock(this);
         interval = INTERVAL;
         targetTimespan = TARGET_TIMESPAN;
-        maxTarget = Utils.decodeCompactBits(0x1e0ffff0);
+        maxTarget = Utils.decodeCompactBits(0x1e03ffff);
         dumpedPrivateKeyHeader = 128;
         addressHeader = 80;
         p2shHeader = 5;
         acceptableAddressCodes = new int[] { addressHeader, p2shHeader };
         port = 6530;
-        packetMagic = 0xf9beb4d9L;
+//        packetMagic = 0xf9beb4d9L;
+        packetMagic = 0xb1c54f2cL;
         bip32HeaderPub = 0x0488B21E; //The 4 byte header that serializes in base58 to "xpub".
         bip32HeaderPriv = 0x0488ADE4; //The 4 byte header that serializes in base58 to "xprv"
 
@@ -52,28 +53,29 @@ public class TorNetParams extends NetworkParameters {
         alertSigningKey = TORCOIN_KEY;
 
         // Genesis block information
-        // calculated from https://github.com/lhartikk/GenesisH0
-        // bytes: 04ffff001d01044c5d4e657720596f726b2054696d65732032382f4e6f762f3230313420452e552e205061726c69616d656e7420506173736573204d65617375726520746f20427265616b20557020476f6f676c6520696e2053796d626f6c696320566f7465
-        // algorithm: SHA256
-        // merkle hash: 7d384db54a917d6e8ff696fe415656d22623771cb1aad0c7a61e4b56eb48ccfd
-        // pszTimestamp: New York Times 28/Nov/2014 E.U. Parliament Passes Measure to Break Up Google in Symbolic Vote
-        // pubkey: 04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f
-        // time: 1418154266
-        // bits: 0x1e0ffff0
-        // nonce: 946985
-        // genesis hash: 000005907642e23edfb0db1caf109296822b4f0cda74b609490ae71b6ad74c0a
+        /**
+         0000010497296153a3a1802e5b8363d2a115a3442bad7d92a50942b1e4f41f92
+         9f16973b8f172c5338c9b12b94ace162bcef730ae098d4ac04cdfefb44f5e44e
+         1e03ffff
+         CBlock(hash=0000010497296153a3a1802e5b8363d2a115a3442bad7d92a50942b1e4f41f92, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=9f16973b8f172c5338c9b12b94ace1\
+         62bcef730ae098d4ac04cdfefb44f5e44e, nTime=1417976555, nBits=1e03ffff, nNonce=2508269, vtx=1)
+         CTransaction(hash=9f16973b8f, ver=1, vin.size=1, vout.size=1, nLockTime=0)
+         CTxIn(COutPoint(0000000000, 4294967295), coinbase 04ffff001d0104194d61792074686520666f726365206265207769746820796f75)
+         CTxOut(nValue=50.00000000, scriptPubKey=04678afdb0fe5548271967f1a67130)
+         vMerkleTree: 9f16973b8f172c5338c9b12b94ace162bcef730ae098d4ac04cdfefb44f5e44e
+         **/
 
-        genesisBlock.setDifficultyTarget(0x1e0ffff0);
-        genesisBlock.setTime(1418154266);
-        genesisBlock.setNonce(946985);
+        genesisBlock.setDifficultyTarget(0x1e03ffff);
+        genesisBlock.setTime(1417976555);
+        genesisBlock.setNonce(2508269);
         id = ID_TORMAINNET;
         subsidyDecreaseBlockCount = 210000;
         spendableCoinbaseDepth = 100;
         String genesisHash = genesisBlock.getHashAsString();
 //        System.out.println(genesisBlock.toString());
-        System.out.println(genesisHash);
-        System.out.println("000005907642e23edfb0db1caf109296822b4f0cda74b609490ae71b6ad74c0a");
-        checkState(genesisHash.equals("000005907642e23edfb0db1caf109296822b4f0cda74b609490ae71b6ad74c0a"), genesisHash);
+//        System.out.println(genesisHash);
+//        System.out.println("000005907642e23edfb0db1caf109296822b4f0cda74b609490ae71b6ad74c0a");
+        checkState(genesisHash.equals("0000010497296153a3a1802e5b8363d2a115a3442bad7d92a50942b1e4f41f92"), genesisHash);
 
         // This contains (at a minimum) the blocks which are not BIP30 compliant. BIP30 changed how duplicate
         // transactions are handled. Duplicated transactions could occur in the case where a coinbase had the same

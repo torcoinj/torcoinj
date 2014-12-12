@@ -110,7 +110,7 @@ public class Main extends Application {
                 // their own money!
                 bitcoin.wallet().allowSpendingUnconfirmedTransactions();
                 if (params != RegTestParams.get())
-                    bitcoin.peerGroup().setMaxConnections(11);
+                    bitcoin.peerGroup().setMaxConnections(1);
                 bitcoin.peerGroup().setBloomFilterFalsePositiveRate(0.00001);
                 Platform.runLater(controller::onBitcoinSetup);
             }
