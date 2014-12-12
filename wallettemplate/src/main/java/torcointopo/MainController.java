@@ -1,6 +1,12 @@
 package torcointopo;
 
+import com.sun.javafx.geom.BaseBounds;
+import com.sun.javafx.geom.transform.BaseTransform;
+import com.sun.javafx.jmx.MXNodeAlgorithm;
+import com.sun.javafx.jmx.MXNodeAlgorithmContext;
+import com.sun.javafx.sg.prism.NGNode;
 import javafx.beans.binding.Bindings;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
@@ -38,6 +44,7 @@ public class MainController {
     public HBox controlsBox;
     public Label balance;
     public Button sendMoneyOutBtn;
+    public Button publishORBtn;
     public ClickableBitcoinAddress addressControl;
     public ListView<Transaction> transactionList;
     public TableView<OnionRelay> relayTable;
@@ -137,6 +144,11 @@ public class MainController {
     public void sendMoneyOut(ActionEvent event) {
         // Hide this UI and show the send money UI. This UI won't be clickable until the user dismisses send_money.
         Main.instance.overlayUI("send_money.fxml");
+    }
+
+    public void publishOnionRelay(ActionEvent event) {
+        // Hide this UI and show the send money UI. This UI won't be clickable until the user dismisses send_money.
+        Main.instance.overlayUI("publish_node.fxml");
     }
 
     public void settingsClicked(ActionEvent event) {

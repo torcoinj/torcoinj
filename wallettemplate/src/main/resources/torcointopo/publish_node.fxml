@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="torcointopo.PublishNodeController">
+  <children>
+    <VBox alignment="CENTER_LEFT" layoutY="8.0" prefHeight="372.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <children>
+            <HBox alignment="TOP_CENTER" minHeight="-Infinity" prefHeight="30.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="titleLabel1" alignment="CENTER" contentDisplay="CENTER" text="Publish Onion Relay">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+              <Label fx:id="titleLabel" text="Hostname">
+                <font>
+                  <Font size="18.0" />
+                </font>
+              </Label>
+                  <Label fx:id="titleLabel2" text="IP Address" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="hostnameEdit" GridPane.columnIndex="1" />
+                  <TextField fx:id="ipAddressEdit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="titleLabel21" text="Bandwidth" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="titleLabel3" text="Node Type" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="bandwidthEdit" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ToggleButton fx:id="isExitNode" mnemonicParsing="false" text="Exit Node" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+        <HBox alignment="CENTER_RIGHT" fillHeight="true" prefHeight="30.0" prefWidth="600.0" spacing="15.0" VBox.vgrow="NEVER">
+          <children>
+            <Button fx:id="cancelBtn" cancelButton="true" mnemonicParsing="false" onAction="#cancel" prefWidth="79.0" text="Cancel" />
+            <Button fx:id="publishBtn" defaultButton="true" mnemonicParsing="false" onAction="#publishNode" prefWidth="79.0" text="Publish" />
+          </children>
+        </HBox>
+      </children>
+      <effect>
+        <DropShadow />
+      </effect>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+    </VBox>
+  </children>
+</AnchorPane>

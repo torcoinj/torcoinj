@@ -24,8 +24,10 @@ public class BitcoinUIModel {
     private ObservableList<OnionRelay> onionRelays = FXCollections.observableArrayList(
             new OnionRelay("torcoin.mit.edu", "18.0.0.1", "2Mb/s", "exit", "1")
     );
+    public static BitcoinUIModel instance;
 
     public BitcoinUIModel() {
+        instance = this;
     }
 
     public BitcoinUIModel(Wallet wallet) {

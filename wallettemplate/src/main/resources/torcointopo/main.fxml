@@ -36,7 +36,7 @@
     </HBox>
     <HBox fx:id="controlsBox" alignment="TOP_LEFT" fillHeight="true" layoutX="14.0" layoutY="347.0" minHeight="16.0" prefHeight="36.0" prefWidth="243.0" spacing="10.0" translateY="60.0" visible="true" AnchorPane.bottomAnchor="17.0">
       <children>
-        <Button id="publish-or" mnemonicParsing="false" styleClass="fat-button" text="Publish OR" />
+        <Button id="publish-or" fx:id="publishORBtn" mnemonicParsing="false" onAction="#publishOnionRelay" styleClass="fat-button" text="Publish OR" />
         <Button id="connectBtn" minWidth="-Infinity" mnemonicParsing="false" styleClass="fat-button" text="Publish Audit" />
             <Button id="publish-warning" mnemonicParsing="false" styleClass="fat-button" text="Publish Warning" />
       </children>
@@ -67,11 +67,12 @@
                      <content>
                         <TableView fx:id="relayTable" opacity="0.7">
                           <columns>
-                            <TableColumn fx:id="hostnameColumn" prefWidth="197.0" text="Hostname" />
-                            <TableColumn fx:id="ipAddressColumn" prefWidth="177.0" text="IP Address" />
-                              <TableColumn fx:id="bandwidthColumn" prefWidth="147.0" text="Bandwidth" />
-                              <TableColumn fx:id="nodeTypeColumn" prefWidth="125.0" text="Node Type" />
-                              <TableColumn fx:id="trustColumn" prefWidth="122.0" text="Trust Rating" />
+                            <TableColumn fx:id="hostnameColumn" prefWidth="155.0" text="Hostname" />
+                            <TableColumn fx:id="ipAddressColumn" prefWidth="144.0" text="IP Address" />
+                              <TableColumn fx:id="bandwidthColumn" prefWidth="99.0" text="Bandwidth" />
+                              <TableColumn fx:id="nodeTypeColumn" prefWidth="111.0" text="Node Type" />
+                              <TableColumn fx:id="trustColumn" prefWidth="98.0" text="Trust Rating" />
+                              <TableColumn prefWidth="161.0" text="# Warnings" />
                           </columns>
                         </TableView>
                      </content></Tab>
