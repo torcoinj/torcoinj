@@ -118,7 +118,6 @@ public abstract class NetworkParameters implements Serializable {
         Block genesisBlock = new Block(n);
         Transaction t = new Transaction(n);
         try {
-            t.setTcType(2);
             byte[] bytes = Utils.HEX.decode
                     ("04ffff001d0104194d61792074686520666f726365206265207769746820796f75");
             t.addInput(new TransactionInput(n, t, bytes));

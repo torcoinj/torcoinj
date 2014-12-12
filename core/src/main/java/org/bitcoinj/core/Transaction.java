@@ -101,7 +101,6 @@ public class Transaction extends ChildMessage implements Serializable {
 
     // These are serialized in both bitcoin and java serialization.
     private long version;
-    private long tcType;
     private ArrayList<TransactionInput> inputs;
     private ArrayList<TransactionOutput> outputs;
 
@@ -1324,9 +1323,5 @@ public class Transaction extends ChildMessage implements Serializable {
      */
     public void setMemo(String memo) {
         this.memo = memo;
-    }
-
-    public void setTcType(long tcType) {
-        this.tcType = tcType;
     }
 }

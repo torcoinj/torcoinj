@@ -43,7 +43,7 @@ public class TorNetParams extends NetworkParameters {
         addressHeader = 80;
         p2shHeader = 5;
         acceptableAddressCodes = new int[] { addressHeader, p2shHeader };
-        port = 6530;
+        port = 5530;
 //        packetMagic = 0xf9beb4d9L;
         packetMagic = 0xb1c54f2cL;
         bip32HeaderPub = 0x0488B21E; //The 4 byte header that serializes in base58 to "xpub".
@@ -54,19 +54,20 @@ public class TorNetParams extends NetworkParameters {
 
         // Genesis block information
         /*
-        00000146878a209f1c24b5126e13121c6a518a536e81c996be00253acbb2f619
-        2e7e24bb25f22f0888dc1c637f76e1dd39675e4ac0d946bf8cce777fc275b4de
-        1e01ffff
-        CBlock(hash=00000146878a209f1c24b5126e13121c6a518a536e81c996be00253acbb2f619, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=2e7e24bb25f22f0888dc1c637f76e1dd39675e4ac0d946bf8cce777fc275b4de, nTime=1417976555, nBits=1e01ffff, nNonce=7899805, vtx=1)
-          CTransaction(hash=2e7e24bb25, ver=2, type=2, vin.size=1, vout.size=1, nLockTime=0)
+        0000010497296153a3a1802e5b8363d2a115a3442bad7d92a50942b1e4f41f92
+        9f16973b8f172c5338c9b12b94ace162bcef730ae098d4ac04cdfefb44f5e44e
+        1e03ffff
+        CBlock(hash=0000010497296153a3a1802e5b8363d2a115a3442bad7d92a50942b1e4f41f92, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=9f16973b8f172c5338c9b12b94ace162bcef730ae098d4ac04cdfefb44f5e44e,
+                nTime=1417976555, nBits=1e03ffff, nNonce=2508269, vtx=1)
+          CTransaction(hash=9f16973b8f, ver=1, vin.size=1, vout.size=1, nLockTime=0)
             CTxIn(COutPoint(0000000000, 4294967295), coinbase 04ffff001d0104194d61792074686520666f726365206265207769746820796f75)
             CTxOut(nValue=50.00000000, scriptPubKey=04678afdb0fe5548271967f1a67130)
-          vMerkleTree: 2e7e24bb25f22f0888dc1c637f76e1dd39675e4ac0d946bf8cce777fc275b4de
+          vMerkleTree: 9f16973b8f172c5338c9b12b94ace162bcef730ae098d4ac04cdfefb44f5e44e
          */
 
-        genesisBlock.setDifficultyTarget(0x1e01ffff);
+        genesisBlock.setDifficultyTarget(0x1e03ffff);
         genesisBlock.setTime(1417976555);
-        genesisBlock.setNonce(7899805);
+        genesisBlock.setNonce(2508269);
 
         id = ID_TORMAINNET;
         subsidyDecreaseBlockCount = 210000;
@@ -74,8 +75,8 @@ public class TorNetParams extends NetworkParameters {
         String genesisHash = genesisBlock.getHashAsString();
         System.out.println(genesisBlock.toString());
         System.out.println(genesisHash);
-        System.out.println("00000146878a209f1c24b5126e13121c6a518a536e81c996be00253acbb2f619");
-        //checkState(genesisHash.equals("00000146878a209f1c24b5126e13121c6a518a536e81c996be00253acbb2f619"), genesisHash);
+        System.out.println("0000010497296153a3a1802e5b8363d2a115a3442bad7d92a50942b1e4f41f92");
+        checkState(genesisHash.equals("0000010497296153a3a1802e5b8363d2a115a3442bad7d92a50942b1e4f41f92"), genesisHash);
 
         // This contains (at a minimum) the blocks which are not BIP30 compliant. BIP30 changed how duplicate
         // transactions are handled. Duplicated transactions could occur in the case where a coinbase had the same
